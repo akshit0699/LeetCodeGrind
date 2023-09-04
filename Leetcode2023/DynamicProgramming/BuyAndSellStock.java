@@ -72,24 +72,27 @@ public class BuyAndSellStock {
         int maximumProfit = 0;
         // At all times I want to know what was the best opportunity to buy the stock
         // in my past, initializing it to starting price of stock.
-        int leastPriceBehindMe = prices[0];
+        int leastCostPrice = prices[0];
 
         // I will consider every day as the day when I can sell
         for(int sellingDay=1; sellingDay<days; sellingDay++) {
 
-            // Case where we choose prices[sellingDay] here:
+            // The price at which i can sell today
+            int sellingPrice = prices[sellingDay];
+            
+            // Case where we choose sellingPrice here:
             // If i would have bought it yesterday i would have to buy it for 4.
             // but today its value is just 1, so I will buy and sell today only
             // even if I make a profit of 0, its better than going in loss.
 
-            // Case where we choose leastPriceBehindMe here:
+            // Case where we choose leastCostPrice here:
             // If i would have bought it yesterday, it was just for 2.
             // today its value is 6, no way i am buying and selling the same day
             // I had a golden opportunity to buy it yesterday!
-            leastPriceBehindMe =  Math.min(prices[sellingDay], leastPriceBehindMe);
+            leastCostPrice =  Math.min(sellingPrice, leastCostPrice);
 
-            // Did I bit the maximum answer up-untill now?
-            maximumProfit =  Math.max(maximumProfit, prices[sellingDay]- leastPriceBehindMe);
+            // Did I hit the maximum answer up-untill now?
+            maximumProfit =  Math.max(maximumProfit, sellingPrice - leastCostPrice);
         }
 
         return maximumProfit;
