@@ -21,5 +21,34 @@ This helps us in fixating what are my sub-problems?
 How do they relate together?
 What are my base-cases?
 
-    
+POSSIBILITY -> RECURSION
+CONSTRAINTS -> VALIDITIY 
 
+POSSIBILITY or CONSTRAINTS ---> Think RECURSION/BACKTRACKING PROBLEM -> prune our decision tree somehow 
+STATE - Expression of a decision/possiblities space.
+
+Recurssion will express all the possiblities!
+
+At each point we can be at max doing 2 splits.
+ABCD
+Can I decode A out of this? Yes - recurse on it.
+Can I decode AB out of this? Yes - recurse on it.
+
+A, BCD and AB, CD --- and now we take the same set of decisions as we did for ABCD
+
+T(n) = T(n-1) + T(n-2) + O(1)
+Tree of depth=n and we are branching twice at each and every node.
+Branch Factor = 2
+Depth = n
+O(2^n) -- would be the asymptotic bound (Think of it like choosing just 1 character at every level of the tree
+and you will have to be at depth=n to say it as the worst case)
+
+Where are we repeating the work?
+When there is a scope for caching we can eliminate some sub-trees alltogether. Hence not requireing us
+to re-compute the results for that part.
+1212 => Can reduce to linear amount of sub-problems to be solved instead of O(2^n)
+Prune thee tree if there are duplicate problems and those cold have been cached.
+
+
+
+String functions [incluscve, exclusive)
